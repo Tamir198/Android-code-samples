@@ -1,0 +1,11 @@
+This is an email intent that enables sending custom mail to more than one mail address
+
+
+String[] addresses = {"1tamir198@gmail.com", "some@gmail.com", "third@gmail.com"};
+String cleanAddresses = Arrays.toString(addresses).replace("[", "").replace("]", ""); //remove [] from addresses (Without this line I would get incorrect adresses )
+
+    Intent someIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+            "mailto", cleanAddresses, null)) //all the addresses
+            .putExtra(Intent.EXTRA_SUBJECT, "This is a test")
+            .putExtra(Intent.EXTRA_TEXT, "For my app");
+    startActivity(Intent.createChooser(someIntent, "Send email..."));
